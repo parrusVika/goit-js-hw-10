@@ -9,4 +9,4 @@ const fetchCountries = function (name) {
             return response.json();
         });
 }
-export default { fetchCountries };
+// export default { fetchCountries };
