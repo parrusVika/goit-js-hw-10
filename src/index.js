@@ -21,24 +21,22 @@ function onInput(e) {
     fetchCountries(nameCountry)
         .then(json => {
             console.log(json);
-            if (data.length > 10) {
+            if (json.length > 10) {
                 clearMarkup(countryList);
                 clearMarkup(countryInfo);
                 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.')
-            } else if (data.length > 1) {
+            } else if (json.length > 1) {
                 fetchCountries(nameCountry).then(countries => {
-                    renderCountryList(data);
+                    renderCountryList(json);
                     clearMarkup(countryInfo)
                 });
-            } else if (data.length === 1) {
+            } else if (json.length === 1) {
                 fetchCountries(nameCountry).then(countries => {
-                    renderCountryInfo(data);
+                    renderCountryInfo(json);
                     clearMarkup(countryList)
                 })
-
-                    .catch(onCountryError);
             };
-        });
+        }).catch(onCountryError);
 
 }
 function renderCountryList(countries) {
